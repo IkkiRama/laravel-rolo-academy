@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $siswa =Siswa::all();
+        return view('siswa.index', compact('siswa'));
     }
 
     /**

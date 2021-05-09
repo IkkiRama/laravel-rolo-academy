@@ -36,19 +36,27 @@ class SiswaController extends Controller
 
     public function edit(Siswa $siswa)
     {
-        //
+        return view('siswa.ubah', compact('siswa'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function update(Request $request, Siswa $siswa)
     {
-        //
+        // Siswa::where('id', $siswa->id)
+        //     ->update([
+        //         'nama_depan' => $request->nama_depan,
+        //         'nama_belakang' => $request->nama_belakang,
+        //         'jenis_kelamin' => $request->jenis_kelamin,
+        //         'agama' => $request->agama,
+        //         'alamat' => $request->alamat
+        //     ]);
+
+
+        $id = Siswa::find($siswa->id);
+        $id->update($request->all());
+
+        return redirect('/siswa')->with('status', 'Data Berhasil Diubah');
     }
 
     /**

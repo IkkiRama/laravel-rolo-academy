@@ -31,6 +31,7 @@
                     <th>Jenis Kelamin</th>
                     <th>Agama</th>
                     <th>Alamat</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
@@ -42,6 +43,10 @@
                     <td>{{$value->jenis_kelamin}}</td>
                     <td>{{$value->agama}}</td>
                     <td>{{$value->alamat}}</td>
+                    <td>
+                        <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm">Ubah</a>
+                        <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -75,8 +80,8 @@
                             <label for="jenis_kelamin">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                 <option value="">Pilih Jenis Kelamin</option>
-                                <option value="laki-laki">Laki-laki</option>
-                                <option value="perempuan">Perempuan</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
 

@@ -14,44 +14,26 @@ class SiswaController extends Controller
         return view('siswa.index', compact('siswa'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        Siswa::create($request->all());
+        return redirect('/siswa')->with('status', 'Data Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function show(Siswa $siswa)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function edit(Siswa $siswa)
     {
         //

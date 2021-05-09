@@ -15,7 +15,13 @@
     <div class="container">
         <h2>Data Siswa</h2>
 
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
+
+        @if(session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+        @endif
 
         <table class="table table-bordered table-hover table-striped">
             <thead class="thead-dark">
@@ -53,7 +59,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
+                    <form action="{{url('/siswa')}}" method="post">
+                        @csrf
                         <div class="form-group">
                             <label for="nama_depan">Nama Depan</label>
                             <input type="text" name="nama_depan" id="nama_depan" class="form-control">
@@ -81,13 +88,17 @@
 
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" id="alamat" class="form-control">
+                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control"></textarea>
                         </div>
 
 
-                        <button class="btn btn-primary">Tambah Data</button>
-                    </form>
                 </div>
+
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Tambah Data</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>

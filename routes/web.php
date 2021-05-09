@@ -10,3 +10,4 @@ Route::get('/', function () {
 
 
 Route::get('/siswa', [SiswaController::class, 'index']);
+Route::post('/siswa', [SiswaController::class, 'store']);

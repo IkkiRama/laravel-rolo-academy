@@ -1,16 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-    <title>Daftar Siswa</title>
-  </head>
-  <body>
+@extends('layout.main')
+@section('title', 'Daftar Siswa')
+@section('body')
 
     <div class="container">
         <h2>Data Siswa</h2>
@@ -45,7 +35,12 @@
                     <td>{{$value->alamat}}</td>
                     <td>
                         <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm">Ubah</a>
-                        <a href="" class="btn btn-danger btn-sm">Hapus</a>
+
+                        <form action="{{url("/siswa/$value->id")}}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini')">Hapus</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -108,8 +103,4 @@
         </div>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-  </body>
-</html>
+@endsection

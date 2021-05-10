@@ -85,7 +85,9 @@
                 <nav>
                     <ul class="nav">
                         <li><a href="{{url('/dashboard')}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        @if(auth()->user()->role == 'admin')
                         <li><a href="{{url('/siswa')}}"><i class="lnr lnr-user"></i> <span>Siswa</span></a></li>
+                        @endif
                     </ul>
                 </nav>
             </div>

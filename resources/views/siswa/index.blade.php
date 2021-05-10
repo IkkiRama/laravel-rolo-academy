@@ -60,7 +60,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{url('/siswa')}}" method="post">
+                            <form action="{{url('/siswa')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="nama_depan">Nama Depan</label>
@@ -70,6 +70,11 @@
                                 <div class="form-group">
                                     <label for="nama_belakang">Nama Belakang</label>
                                     <input type="text" name="nama_belakang" id="nama_belakang" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control">
                                 </div>
 
                                 <div class="form-group">
@@ -85,6 +90,11 @@
                                 <div class="form-group">
                                     <label for="agama">Agama</label>
                                     <input type="text" name="agama" id="agama" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="foto">Foto</label>
+                                    <input type="file" name="foto" id="foto" class="form-form-control-file">
                                 </div>
 
                                 <div class="form-group">

@@ -16,12 +16,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 // Siswa & Dashboard
-Route::group(['middleware' => 'auth'], function(){
-
-    Route::get('/dashboard', function () {
-        return view('siswa.home');
-    });
-
+Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
     Route::get('/siswa', [SiswaController::class, 'index']);
 
     Route::get('/siswa/edit/{siswa}', [SiswaController::class, 'edit']);
@@ -33,5 +28,12 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::post('/siswa', [SiswaController::class, 'store']);
     Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
+
+});
+Route::group(['middleware' => ['auth', 'CekRole:admin,siswa']], function(){
+
+    Route::get('/dashboard', function () {
+        return view('siswa.home');
+    });
 
 });

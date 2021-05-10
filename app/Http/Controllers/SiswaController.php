@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SiswaController extends Controller
 {
@@ -22,7 +24,32 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-        Siswa::create($request->all());
+        $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+
+
+        // insert ke tabel user
+        $user = new User;
+        $user->role = 'siswa';
+        $user->name = $request->nama_depan;
+        $user->email = $request->email;
+        $user->password = bcrypt('12345');
+        $user->remember_token = Str::random(60);
+        $user->save();
+
+
+        // insert ke tabel siswa
+        Siswa::create([
+            'id_user' => $user->id,
+            'nama_depan' => $request->nama_depan,
+            'nama_belakang' => $request->nama_belakang,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'foto' => $request->file('foto')->getClientOriginalName()
+        ]);
+
+
+
         return redirect('/siswa')->with('status', 'Data Berhasil Ditambahkan');
     }
 

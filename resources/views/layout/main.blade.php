@@ -97,14 +97,7 @@
             <div class="main-content">
                 <div class="container-fluid">
                     <!-- OVERVIEW -->
-                    <div class="panel panel-headline" style="min-height: 70vh;">
-                        <div class="panel-heading">
-                            <h2 class="">@yield('judul halaman')</h2>
-                        </div>
-                        <div class="panel-body">
-                            @yield('content')
-                        </div>
-                    </div>
+                    @yield('content')
                 </div>
             </div>
             <!-- END MAIN CONTENT -->

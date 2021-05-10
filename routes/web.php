@@ -23,8 +23,14 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     Route::get('/siswa', [SiswaController::class, 'index']);
+
     Route::get('/siswa/edit/{siswa}', [SiswaController::class, 'edit']);
     Route::put('/siswa/edit/{siswa}', [SiswaController::class, 'update']);
+
+
+    Route::get('/siswa/profil/{siswa}', [SiswaController::class, 'profil']);
+
+
     Route::post('/siswa', [SiswaController::class, 'store']);
     Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
 

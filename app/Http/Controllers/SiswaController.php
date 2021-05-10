@@ -28,16 +28,6 @@ class SiswaController extends Controller
 
 
 
-
-    public function show(Siswa $siswa)
-    {
-        //
-    }
-
-
-
-
-
     public function edit(Siswa $siswa)
     {
         return view('siswa.ubah', compact('siswa'));
@@ -60,6 +50,12 @@ class SiswaController extends Controller
         $id = Siswa::find($siswa->id);
         $id->update($request->all());
 
+        if ($request->hasFile('foto')) {
+            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+            $siswa->foto = $request->file('foto')->getClientOriginalName();
+            $siswa->save();
+        }
+
         return redirect('/siswa')->with('status', 'Data Berhasil Diubah');
     }
 
@@ -70,5 +66,12 @@ class SiswaController extends Controller
         Siswa::destroy($siswa->id);
 
         return redirect('/siswa')->with('status', 'Data Berhasil Dihapus');
+    }
+
+
+
+    public function profil(Siswa $siswa)
+    {
+        return view('siswa.profil', compact('siswa'));
     }
 }

@@ -1,9 +1,7 @@
 @extends('layout.main')
 @section('title', 'Ubah Siswa')
-@section('body')
-
-    <div class="container">
-        <h2>Form Ubah Siswa</h2>
+@section('judul halaman', 'Form Ubah Siswa')
+@section('content')
 
         <form action="{{url("/siswa/edit/$siswa->id")}}" method="post" class="mb-5">
             @method('put')

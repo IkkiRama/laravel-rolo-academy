@@ -10,4 +10,9 @@ class Siswa extends Model
     use HasFactory;
     protected $table = 'siswa';
     protected $fillable = ['nama_depan', 'nama_belakang', 'agama', 'jenis_kelamin', 'alamat', 'foto', 'id_user'];
+
+    public function mapel()
+    {
+        return $this->belongsToMany(Mapel::class)->withPivot(['nilai']);
+    }
 }

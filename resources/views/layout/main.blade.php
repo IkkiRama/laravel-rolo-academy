@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- VENDOR CSS -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/vendor/font-awesome/css/font-awesome.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/vendor/linearicons/style.css')}}">
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{asset('admin/assets/css/main.css')}}">
@@ -17,6 +17,8 @@
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/assets/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{asset('admin/assets/img/favicon.png')}}">
+
+    @yield('head')
 </head>
 
 <body>

@@ -1,6 +1,9 @@
 @extends('layout.main')
 @section('title', 'Profil Siswa')
 @section('judul halaman', 'Profil Siswa')
+@section('head')
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+@endsection
 @section('content')
     <div class="panel panel-profile">
         <div class="clearfix">
@@ -102,6 +105,7 @@
                                             <th>NAMA</th>
                                             <th>SEMESTER</th>
                                             <th>NILAI</th>
+                                            <th>AKSI</th>
                                         </tr>
                                     </thead>
 
@@ -111,7 +115,14 @@
                                             <td>{{$mapel->kode}}</td>
                                             <td>{{$mapel->nama}}</td>
                                             <td>{{$mapel->semester}}</td>
-                                            <td>{{$mapel->pivot->nilai}}</td>
+                                            <td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/editnilai/{{$siswa->id}}" data-title="Masukkan Nilai">{{$mapel->pivot->nilai}}</a></td>
+                                            <td>
+                                            <form action="{{url("/siswa/$siswa->id/hapusnilai/$mapel->id")}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -176,6 +187,7 @@
 
 @section('script')
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 
     <script>
         Highcharts.chart('chartNilai', {
@@ -217,6 +229,10 @@
                 data: [42.4, 33.2, 34.5, 49.9, 71.5, 106.4]
 
             }]
+        });
+
+        $(document).ready(function() {
+            $('.nilai').editable();
         });
     </script>
 @endsection

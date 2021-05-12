@@ -145,4 +145,13 @@ class SiswaController extends Controller
 
         return redirect("/siswa/profil/$siswa->id")->with('sukses', 'Data Nilai Berhasil Ditambahkan');
     }
+
+
+    public function hapus_nilai(Siswa $siswa, Mapel $mapel)
+    {
+        $siswa->mapel()->detach($mapel);
+
+        return redirect()->back()->with('sukses', 'Data Nilai Berhasil Dihapus');
+
+    }
 }

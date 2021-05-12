@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
 
     Route::get('/siswa/profil/{siswa}', [SiswaController::class, 'profil']);
     Route::post('/siswa/addnilai/{siswa}', [SiswaController::class, 'add_nilai']);
+    Route::delete('/siswa/{siswa}/hapusnilai/{mapel}', [SiswaController::class, 'hapus_nilai']);
 
 
     Route::post('/siswa', [SiswaController::class, 'store']);

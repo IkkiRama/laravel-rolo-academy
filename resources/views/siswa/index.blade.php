@@ -36,12 +36,12 @@
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->agama}}</a></td>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->alamat}}</a></td>
                         <td>
-                            <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm">Ubah</a>
+                            <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 
                             <form action="{{url("/siswa/$value->id")}}" method="post" style="display: inline;">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini')">Hapus</button>
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini')"><div class="fa fa-trash"></div></button>
                             </form>
                         </td>
                     </tr>

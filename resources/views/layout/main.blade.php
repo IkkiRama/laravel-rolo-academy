@@ -83,9 +83,10 @@
             <div class="sidebar-scroll">
                 <nav>
                     <ul class="nav">
-                        <li><a href="{{url('/dashboard')}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        <li><a href="{{url('/dashboard')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                         @if(auth()->user()->role == 'admin')
-                        <li><a href="{{url('/siswa')}}"><i class="lnr lnr-user"></i> <span>Siswa</span></a></li>
+                        <li><a href="{{url('/siswa')}}"><i class="fa fa-user"></i> <span>Siswa</span></a></li>
+                        <li><a href="{{url('/guru')}}"><i class="fa fa-users"></i> <span>Guru</span></a></li>
                         @endif
                     </ul>
                 </nav>

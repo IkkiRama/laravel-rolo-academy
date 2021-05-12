@@ -15,4 +15,9 @@ class Mapel extends Model
     {
         return $this->belongsToMany(Siswa::class)->withPivot(['nilai']);
     }
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class);
+    }
 }

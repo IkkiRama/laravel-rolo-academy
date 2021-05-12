@@ -105,6 +105,7 @@
                                             <th>NAMA</th>
                                             <th>SEMESTER</th>
                                             <th>NILAI</th>
+                                            <th>GURU</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -115,7 +116,11 @@
                                             <td>{{$mapel->kode}}</td>
                                             <td>{{$mapel->nama}}</td>
                                             <td>{{$mapel->semester}}</td>
+
                                             <td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/editnilai/{{$siswa->id}}" data-title="Masukkan Nilai">{{$mapel->pivot->nilai}}</a></td>
+
+                                            <td><a href="{{url("/guru/profil/$mapel->guru_id")}}">{{$mapel->guru->nama}}</a></td>
+
                                             <td>
                                             <form action="{{url("/siswa/$siswa->id/hapusnilai/$mapel->id")}}" method="post">
                                                 @csrf

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AuthController;
 
 
@@ -18,6 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
 // Siswa & Dashboard
 Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
     Route::get('/siswa', [SiswaController::class, 'index']);
+    Route::get('/guru', [GuruController::class, 'index']);
 
     Route::get('/siswa/edit/{siswa}', [SiswaController::class, 'edit']);
     Route::put('/siswa/edit/{siswa}', [SiswaController::class, 'update']);
@@ -30,6 +32,13 @@ Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
 
     Route::post('/siswa', [SiswaController::class, 'store']);
     Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
+
+
+
+
+    // guru
+    Route::get('/guru/profil/{guru}', [GuruController::class, 'profil']);
+
 
 });
 Route::group(['middleware' => ['auth', 'CekRole:admin,siswa']], function(){

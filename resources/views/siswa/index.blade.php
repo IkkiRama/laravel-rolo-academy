@@ -59,47 +59,63 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                      <div class="modal-body">
                             <form action="{{url('/siswa')}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group @error('nama_depan') has-error @enderror">
                                     <label for="nama_depan">Nama Depan</label>
-                                    <input type="text" name="nama_depan" id="nama_depan" class="form-control">
+                                    <input type="text" name="nama_depan" id="nama_depan" class="form-control" value="{{old('nama_depan')}}">
+
+                                    @error('nama_depan') <div class="invalid-feedback"> {{$message}} </div> @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nama_belakang">Nama Belakang</label>
-                                    <input type="text" name="nama_belakang" id="nama_belakang" class="form-control">
+                                    <input type="text" name="nama_belakang" id="nama_belakang" class="form-control" value="{{old('nama_belakang')}}">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group @error('email') has-error @enderror">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control">
+                                    <input type="email" name="email" id="email" class="form-control" value="{{old('email')}}">
+
+                                    @error('email') <div class="invalid-feedback"> {{$message}} </div> @enderror
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group @error('jenis_kelamin') has-error @enderror">
                                     <label for="jenis_kelamin">Jenis Kelamin</label>
                                     <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                         <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="Laki-laki">Laki-laki</option>
-                                        <option value="Perempuan">Perempuan</option>
+
+                                        <option value="Laki-laki"{{(old('jenis_kelamin') == 'Laki-laki') ? ' selected' : ''}}>Laki-laki</option>
+
+
+                                        <option value="Perempuan"{{(old('jenis_kelamin') == 'Perempuan') ? ' selected' : ''}}>Perempuan</option>
                                     </select>
+
+
+                                    @error('jenis_kelamin') <div class="invalid-feedback"> {{$message}} </div> @enderror
                                 </div>
 
 
-                                <div class="form-group">
+                                <div class="form-group @error('agama') has-error @enderror">
                                     <label for="agama">Agama</label>
-                                    <input type="text" name="agama" id="agama" class="form-control">
+                                    <input type="text" name="agama" id="agama" class="form-control" value="{{old('agama')}}">
+
+                                    @error('agama') <div class="invalid-feedback"> {{$message}} </div> @enderror
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group @error('foto') has-error @enderror">
                                     <label for="foto">Foto</label>
-                                    <input type="file" name="foto" id="foto" class="form-form-control-file">
+                                    <input type="file" name="foto" id="foto" class="form-form-control" value="{{old('foto')}}">
+
+                                    @error('foto') <div class="invalid-feedback"> {{$message}} </div> @enderror
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group @error('alamat') has-error @enderror">
                                     <label for="alamat">Alamat</label>
-                                    <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control">{{old('alamat')}}</textarea>
+
+                                    @error('alamat') <div class="invalid-feedback"> {{$message}} </div> @enderror
                                 </div>
 
 

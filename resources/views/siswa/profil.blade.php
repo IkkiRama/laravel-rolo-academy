@@ -62,40 +62,110 @@
             <!-- END LEFT COLUMN -->
             <!-- RIGHT COLUMN -->
             <div class="profile-right">
-                <!-- TABBED CONTENT -->
-                <div class="custom-tabs-line tabs-line-bottom left-aligned">
-                    <ul class="nav" role="tablist">
-                        <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Aktivitas Terakhir</a></li>
-                    </ul>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="tab-bottom-left1">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>KODE</th>
-                                    <th>NAMA</th>
-                                    <th>SEMESTER</th>
-                                    <th>NILAI</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                @foreach($siswa->mapel as $mapel)
-                                <tr>
-                                    <td>{{$mapel->kode}}</td>
-                                    <td>{{$mapel->nama}}</td>
-                                    <td>{{$mapel->semester}}</td>
-                                    <td>{{$mapel->pivot->nilai}}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <!-- TABBED CONTENT -->
+                <div class="tab-content">
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            {{-- <h3>Mata Pelajaran</h3> --}}
+                            <div class="custom-tabs-line tabs-line-bottom left-aligned">
+                                <ul class="nav" role="tablist">
+                                    <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Mata Pelajaran</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <button type="button" class="btn btn-primary btn-sm" style="margin-bottom: 10px; margin-top: -25px;" data-toggle="modal" data-target="#exampleModal">Tambah Nilai</button>
+
+
+
+                            @if(session('sukses'))
+                            <div class="alert alert-success">
+                                {{session('sukses')}}
+                            </div>
+                            @endif
+
+                             @if(session('gagal'))
+                            <div class="alert alert-danger">
+                                {{session('gagal')}}
+                            </div>
+                            @endif
+
+                            <div class="tab-pane fade in active" id="tab-bottom-left1">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>KODE</th>
+                                            <th>NAMA</th>
+                                            <th>SEMESTER</th>
+                                            <th>NILAI</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach($siswa->mapel as $mapel)
+                                        <tr>
+                                            <td>{{$mapel->kode}}</td>
+                                            <td>{{$mapel->nama}}</td>
+                                            <td>{{$mapel->semester}}</td>
+                                            <td>{{$mapel->pivot->nilai}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
+
                 </div>
                 <!-- END TABBED CONTENT -->
             </div>
             <!-- END RIGHT COLUMN -->
         </div>
     </div>
+
+
+
+
+    {{-- modal --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable  modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Form Tambah Nilai</h5>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                      <div class="modal-body">
+                            <form action="{{url("/siswa/addnilai/$siswa->id")}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <label for="mapel">Mapel</label>
+                                <select name="mapel" id="mapel" class="form-control">
+                                    <option value="">Pilih Mata Pelajaran</option>
+                                    @foreach($mataPelajaran as $mp)
+                                    <option value="{{$mp->id}}">{{$mp->nama}}</option>
+                                    @endforeach
+                                </select>
+
+                                <div class="form-group @error('nilai') has-error @enderror">
+                                    <label for="nilai">Nilai</label>
+                                    <input type="number" name="nilai" id="nilai" class="form-control" value="{{old('nilai')}}">
+
+                                    @error('nilai') <div class="invalid-feedback"> {{$message}} </div> @enderror
+                                </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">Simpan</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 @endsection

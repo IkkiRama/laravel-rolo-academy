@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -24,7 +25,21 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-        $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+        // dd($request->all());
+        $request->validate([
+            'nama_depan' => 'required | min : 5',
+            'nama_belakang' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'foto' => 'mimes:jpg,png'
+        ]);
+
+
+        //Up Foto
+        if ($request->hasFile('foto')) {
+            $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+        }
 
 
         // insert ke tabel user
@@ -99,6 +114,20 @@ class SiswaController extends Controller
 
     public function profil(Siswa $siswa)
     {
-        return view('siswa.profil', compact('siswa'));
+        $mataPelajaran = Mapel::all();
+        // dd($mapel);
+        return view('siswa.profil', ['siswa'=> $siswa, 'mataPelajaran' => $mataPelajaran]);
+    }
+
+    public function add_nilai(Siswa $siswa, Request $request)
+    {
+        if ($siswa->mapel()->where('mapel_id', $request->mapel)->exists()) {
+
+            return redirect("/siswa/profil/$siswa->id")->with('gagal', 'Data Mata Pelajaran Sudah Ada');
+
+        }
+        $siswa->mapel()->attach($request->mapel, ['nilai' => $request->nilai]);
+
+        return redirect("/siswa/profil/$siswa->id")->with('sukses', 'Data Nilai Berhasil Ditambahkan');
     }
 }

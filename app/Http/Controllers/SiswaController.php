@@ -76,7 +76,7 @@ class SiswaController extends Controller
 
 
 
-        return redirect('/siswa')->with('status', 'Data Berhasil Ditambahkan');
+        return redirect('/siswa')->with('sukses', 'Data Berhasil Ditambahkan');
     }
 
 
@@ -109,7 +109,7 @@ class SiswaController extends Controller
             $siswa->save();
         }
 
-        return redirect('/siswa')->with('status', 'Data Berhasil Diubah');
+        return redirect('/siswa')->with('sukses', 'Data Berhasil Diubah');
     }
 
 
@@ -118,7 +118,7 @@ class SiswaController extends Controller
     {
         Siswa::destroy($siswa->id);
 
-        return redirect('/siswa')->with('status', 'Data Berhasil Dihapus');
+        return redirect('/siswa')->with('sukses', 'Data Berhasil Dihapus');
     }
 
 

@@ -14,11 +14,11 @@
 
 
 
-            @if(session('status'))
+            {{-- @if(session('status'))
             <div class="alert alert-success">
                 {{session('status')}}
             </div>
-            @endif
+            @endif --}}
 
             <table class="table table-bordered table-hover table-striped">
                 <thead class="thead-dark">
@@ -43,11 +43,7 @@
                         <td>
                             <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 
-                            <form action="{{url("/siswa/$value->id")}}" method="post" style="display: inline;">
-                                @method('delete')
-                                @csrf
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini')"><div class="fa fa-trash"></div></button>
-                            </form>
+                            <a href="#" class="btn btn-danger btn-sm hapusSiswa" siswa-id="{{$value->id}}"><div class="fa fa-trash"></div></a>
                         </td>
                     </tr>
                     @endforeach
@@ -157,4 +153,32 @@
         </div>
     </div>
 
+@endsection
+
+
+@section('script')
+    <script>
+
+        @if(Session::has('sukses'))
+            swal("Sukses!", "{{Session::get('sukses')}}", "success");
+        @endif
+
+        $('.hapusSiswa').click(function(){
+            let siswa_id = $(this).attr('siswa-id');
+            swal({
+                title: "Yakin?",
+                text: "Anda Akan Menghapus Data Ini ??",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location = "/siswa/delete/"+siswa_id
+            }
+            });
+        });
+
+
+    </script>
 @endsection

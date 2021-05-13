@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
 
 
     Route::post('/siswa', [SiswaController::class, 'store']);
-    Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
+    Route::get('/siswa/delete/{siswa}', [SiswaController::class, 'destroy']);
 
 
 

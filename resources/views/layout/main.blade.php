@@ -117,6 +117,7 @@
     <script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     @yield('script')
 </body>

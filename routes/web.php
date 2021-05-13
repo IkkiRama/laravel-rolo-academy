@@ -40,6 +40,11 @@ Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
     Route::get('/guru/profil/{guru}', [GuruController::class, 'profil']);
 
 
+
+    // Excel
+    Route::get('/siswa/export', [SiswaController::class, 'export']);
+
+
 });
 Route::group(['middleware' => ['auth', 'CekRole:admin,siswa']], function(){
 

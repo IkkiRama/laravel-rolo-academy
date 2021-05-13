@@ -9,6 +9,11 @@
         <div class="panel-body">
             <button type="button" class="btn btn-primary btn-sm" style="margin-bottom: 10px; margin-top: -25px;" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
 
+            <button type="button" class="btn btn-danger btn-sm float-right" style="margin-bottom: 10px; margin-top: -25px;" data-toggle="modal" data-target="#downloadModal">Download Data</button>
+
+
+
+
             @if(session('status'))
             <div class="alert alert-success">
                 {{session('status')}}
@@ -23,7 +28,6 @@
                         <th>Jenis Kelamin</th>
                         <th>Agama</th>
                         <th>Alamat</th>
-                        <th>Rata-Rata Nilai</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -36,7 +40,6 @@
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->jenis_kelamin}}</a></td>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->agama}}</a></td>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->alamat}}</a></td>
-                        <td>{{$value->rata_rata_nilai()}}</td>
                         <td>
                             <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 
@@ -128,6 +131,26 @@
                             <button class="btn btn-primary">Tambah Data</button>
                         </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-dialog-scrollable  modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Pilih File Download</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div style="width:100%;display:flex;justify-content:center;">
+                                <a href="{{url('/siswa/export')}}" class="btn btn-primary" style="margin-right:30px;">File Excel</a>
+                                <a href="" class="btn btn-danger">File PDF</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

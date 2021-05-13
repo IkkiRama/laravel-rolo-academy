@@ -8,6 +8,11 @@ use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+
+// excel
+use App\Exports\SiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class SiswaController extends Controller
 {
 
@@ -159,5 +164,13 @@ class SiswaController extends Controller
 
         return redirect()->back()->with('sukses', 'Data Nilai Berhasil Dihapus');
 
+    }
+
+
+
+    // Export Ke Excel
+    public function export()
+    {
+        return Excel::download(new SiswaExport, 'Siswa.xlsx');
     }
 }

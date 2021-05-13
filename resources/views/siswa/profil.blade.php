@@ -19,7 +19,7 @@
                                 <i class="fa fa-user" style="color: #000; font-size: 5rem;"></i>
                             </div>
 
-                            <h3 class="name">{{$siswa->nama_depan}} {{$siswa->nama_belakang}}</h3>
+                            <h3 class="name">{{$siswa->nama_lengkap()}}</h3>
                             <span class="online-status status-available">Available</span>
                         </div>
                         @else
@@ -35,13 +35,13 @@
                     <div class="profile-stat">
                         <div class="row">
                             <div class="col-md-4 stat-item">
-                                {{$siswa->mapel->count()}}<span>Mapel</span>
+                                {{$siswa->mapel->count()}}<span>Mata Pelajaran</span>
                             </div>
                             <div class="col-md-4 stat-item">
-                                15 <span>Awards</span>
+                                {{$siswa->rata_rata_nilai()}}<span>Rata-Rata Nilai</span>
                             </div>
                             <div class="col-md-4 stat-item">
-                                2174 <span>Points</span>
+                                {{totalNilaiSatuSiswa($siswa->id)}} <span>Total Nilai</span>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                     <div class="profile-info">
                         <h4 class="heading">Info Siswa</h4>
                         <ul class="list-unstyled list-justify">
-                            <li>Nama Lengkap <span>{{$siswa->nama_depan}} {{$siswa->nama_belakang}}</span></li>
+                            <li>Nama Lengkap <span>{{$siswa->nama_lengkap()}}</span></li>
                             <li>Jenis Kelamin <span>{{$siswa->jenis_kelamin}}</span></li>
                             <li>Agama <span>{{$siswa->agama}}</span></li>
                             <li>Alamat <span>{{$siswa->alamat}}</span></li>

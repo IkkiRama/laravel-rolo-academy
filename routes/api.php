@@ -20,4 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+
 Route::post('/siswa/editnilai/{siswa}', [ApiController::class, 'edit_nilai']);
+

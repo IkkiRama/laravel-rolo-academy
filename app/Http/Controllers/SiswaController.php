@@ -11,6 +11,12 @@ use Illuminate\Support\Str;
 class SiswaController extends Controller
 {
 
+    public function dashboard()
+    {
+        return view('siswa.home');
+    }
+
+
     public function index(Request $request)
     {
         if ($request->has('cari')) {

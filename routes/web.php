@@ -43,8 +43,6 @@ Route::group(['middleware' => ['auth', 'CekRole:admin']], function(){
 });
 Route::group(['middleware' => ['auth', 'CekRole:admin,siswa']], function(){
 
-    Route::get('/dashboard', function () {
-        return view('siswa.home');
-    });
+    Route::get('/dashboard', [SiswaController::class, 'dashboard']);
 
 });

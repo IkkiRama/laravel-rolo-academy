@@ -23,6 +23,7 @@
                         <th>Jenis Kelamin</th>
                         <th>Agama</th>
                         <th>Alamat</th>
+                        <th>Rata-Rata Nilai</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -31,10 +32,11 @@
                     @foreach($siswa as $value)
                     <tr>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$loop->iteration}}</a></td>
-                        <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->nama_depan}} {{$value->nama_belakang}}</a></td>
+                        <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->nama_lengkap()}}</a></td>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->jenis_kelamin}}</a></td>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->agama}}</a></td>
                         <td><a href="{{url("/siswa/profil/$value->id")}}">{{$value->alamat}}</a></td>
+                        <td>{{$value->rata_rata_nilai()}}</td>
                         <td>
                             <a href="{{url("/siswa/edit/$value->id")}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 

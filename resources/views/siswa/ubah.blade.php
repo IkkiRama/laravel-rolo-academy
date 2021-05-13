@@ -35,7 +35,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="foto">Foto</label>
+                    <label for="foto">Foto</label><br>
+                    <img src="{{asset("/images/$siswa->foto")}}" class="img-thumbnail" width="120" height="120" style="margin:20px 0;">
                     <input type="file" name="foto" id="foto" class="form-form-control-file">
                 </div>
 

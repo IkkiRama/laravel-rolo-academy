@@ -13,7 +13,7 @@
                 <div class="profile-header">
                     <div class="overlay"></div>
 
-                        {{-- @if(!$siswa->foto) --}}
+                        @if(!$guru->foto)
                         <div class="profile-main" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
                             <div class="profil" style="width:50%;height:100px;display:flex; align-items: center; justify-content: center;background-color: #fff;border-radius: 20px;">
                                 <i class="fa fa-user" style="color: #000; font-size: 5rem;"></i>
@@ -22,16 +22,16 @@
                             <h3 class="name">{{$guru->nama}}</h3>
                             <span class="online-status status-available">Available</span>
                         </div>
-                        {{-- @else --}}
+                        @else
 
                         <div class="profile-main">
-                            <img src="{{asset("")}}" style="width:50%;height:100px;" alt="Avatar">
+                            <img src="{{asset("/images/$guru->foto")}}" style="width:50%;height:100px;" alt="Avatar">
 
 
                             <h3 class="name">{{$guru->nama}}</h3>
                             <span class="online-status status-available">Available</span>
                         </div>
-                        {{-- @endif --}}
+                        @endif
                     <div class="profile-stat">
                         <div class="row">
                             <div class="col-md-4 stat-item">
